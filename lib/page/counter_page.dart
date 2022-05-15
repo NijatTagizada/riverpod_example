@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_example/bloc/counter_bloc.dart';
 
+import '../bloc/counter_bloc.dart';
 import '../di/provider_init.dart';
 
 class CounterPage extends ConsumerWidget {
