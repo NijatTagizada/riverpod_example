@@ -30,7 +30,7 @@ class ProviderLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     log(
-      '$provider was updated(new value ${newValue.toString()})',
+      '$provider was updated, newValue=>$newValue',
       name: "ProviderLogger",
     );
   }

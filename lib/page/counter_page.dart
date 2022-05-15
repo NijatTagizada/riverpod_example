@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_example/page/c.dart';
+import 'package:riverpod_example/bloc/counter_bloc.dart';
 
 import '../di/provider_init.dart';
 
@@ -9,11 +9,28 @@ class CounterPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final counterPrv = ref.watch(counterProvider);
+    final counter = ref.watch(counterProvider);
+
+    ref.listen<CounterBloc>(counterProvider, (previous, next) {
+      if (next.count > 5) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Count more than 5'),
+            duration: Duration(milliseconds: 500),
+          ),
+        );
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Page'),
+        actions: [
+          IconButton(
+            onPressed: () => ref.invalidate(counterProvider),
+            icon: const Icon(Icons.refresh),
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -23,7 +40,7 @@ class CounterPage extends ConsumerWidget {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${counterPrv.count}',
+              '${counter.count}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -31,9 +48,7 @@ class CounterPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // ref.read(counterProvider).increase();
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => GD()));
+          ref.read(counterProvider).increase();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
