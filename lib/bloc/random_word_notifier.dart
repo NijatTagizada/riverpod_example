@@ -1,6 +1,15 @@
 import 'dart:math';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
+
+class RandomWordNotifier extends ChangeNotifier {
+  String word = 'random text';
+
+  void getRandomWord() {
+    word = _getRandomString(15);
+    notifyListeners();
+  }
+}
 
 const String _chars =
     'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
@@ -12,9 +21,3 @@ String _getRandomString(int length) => String.fromCharCodes(
         (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)),
       ),
     );
-
-class RandomWordNotifier extends StateNotifier<String> {
-  RandomWordNotifier() : super('random text');
-
-  void getRandomWord() => state = _getRandomString(15);
-}

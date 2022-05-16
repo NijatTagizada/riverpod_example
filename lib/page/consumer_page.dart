@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../di/provider_init.dart';
+import 'todo_state_notifier_page.dart';
 
 class ConsumerPage extends StatelessWidget {
   const ConsumerPage({Key? key}) : super(key: key);
@@ -10,7 +11,23 @@ class ConsumerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MultiProvide Page'),
+        title: const Text('Consumer Page'),
+        actions: [
+          MaterialButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const StateNotifierPage(),
+                ),
+              );
+            },
+            child: const Text(
+              'Next Page',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +68,7 @@ class ConsumerPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    randomWord,
+                    randomWord.word,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   const SizedBox(height: 10),
