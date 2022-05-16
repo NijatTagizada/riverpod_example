@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../bloc/counter_bloc.dart';
+import '../bloc/counter_notifier.dart';
 import '../di/provider_init.dart';
+import 'consumer_page.dart';
 
 class CounterPage extends ConsumerWidget {
   const CounterPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class CounterPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final counter = ref.watch(counterProvider);
 
-    ref.listen<CounterBloc>(counterProvider, (previous, next) {
+    ref.listen<CounterNotifier>(counterProvider, (previous, next) {
       if (next.count > 5) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -29,6 +30,20 @@ class CounterPage extends ConsumerWidget {
           IconButton(
             onPressed: () => ref.invalidate(counterProvider),
             icon: const Icon(Icons.refresh),
+          ),
+          MaterialButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ConsumerPage(),
+                ),
+              );
+            },
+            child: const Text(
+              'Next Page',
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),
