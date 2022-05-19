@@ -5,13 +5,13 @@ import 'package:riverpod_example/model/todo_model.dart';
 import 'todo_notifier_state.dart';
 
 class TodoNotifier extends StateNotifier<TodoState> {
-  TodoNotifier() : super(const Loading());
+  TodoNotifier(this.dio) : super(const Loading());
+
+  final Dio dio;
 
   Future<void> fetchData() async {
     try {
-      final response = await Dio().get(
-        'https://jsonplaceholder.typicode.com/todos',
-      );
+      final response = await dio.get('/todos');
 
       final List<TodoModel> data = [];
 
