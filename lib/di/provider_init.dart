@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../bloc/counter_notifier.dart';
-import '../bloc/random_word_notifier.dart';
-import '../bloc/todo_notifier.dart';
-import '../bloc/todo_notifier_state.dart';
+import '../notifier/counter_notifier.dart';
+import '../notifier/random_word_notifier.dart';
+import '../notifier/todo_notifier.dart';
+import '../notifier/todo_notifier_state.dart';
 
 final counterProvider =
     ChangeNotifierProvider.autoDispose<CounterNotifier>((ref) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../bloc/counter_notifier.dart';
 import '../di/provider_init.dart';
+import '../notifier/counter_notifier.dart';
 import 'consumer_page.dart';
 
 class CounterPage extends ConsumerWidget {
