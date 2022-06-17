@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../di/provider_init.dart';
+import '../providers/provider_init.dart';
 
 class StateNotifierPage extends ConsumerStatefulWidget {
   const StateNotifierPage({Key? key}) : super(key: key);

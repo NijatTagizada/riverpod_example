@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../di/provider_init.dart';
+import '../providers/provider_init.dart';
 import 'todo_state_notifier_page.dart';
 
 class ConsumerPage extends StatelessWidget {
