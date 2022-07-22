@@ -62,7 +62,6 @@ class ConsumerPage extends StatelessWidget {
           Consumer(
             builder: (context, ref, child) {
               final randomWord = ref.watch(randomWordProvider);
-              final randomWordNotifier = ref.watch(randomWordProvider.notifier);
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +73,7 @@ class ConsumerPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   MaterialButton(
                     color: Colors.amber,
-                    onPressed: () => randomWordNotifier.getRandomWord(),
+                    onPressed: () => randomWord.getRandomWord(),
                     child: const Text('Random Word'),
                   )
                 ],
