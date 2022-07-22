@@ -8,7 +8,7 @@ class ProviderLogger extends ProviderObserver {
       ProviderBase provider, Object? value, ProviderContainer container) {
     super.didAddProvider(provider, value, container);
     log(
-      '$provider was added',
+      '${value.hashCode} | ${value.runtimeType} was added',
       name: "ProviderLogger",
     );
   }
